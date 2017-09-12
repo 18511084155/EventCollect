@@ -1,4 +1,4 @@
-package com.woodys.eventcollect.db.provider;
+package com.woodys.eventcollect.database.provider;
 
 import android.app.ActivityManager;
 import android.content.ContentProvider;
@@ -15,12 +15,12 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.util.SparseArray;
 
-import com.woodys.eventcollect.db.DbHelper;
-import com.woodys.eventcollect.db.DbTable;
-import com.woodys.eventcollect.db.annotation.FieldFilter;
-import com.woodys.eventcollect.db.annotation.Table;
-import com.woodys.eventcollect.db.annotation.TableField;
-import com.woodys.eventcollect.db.db.MyDb;
+import com.woodys.eventcollect.database.DbHelper;
+import com.woodys.eventcollect.database.DbTable;
+import com.woodys.eventcollect.database.annotation.FieldFilter;
+import com.woodys.eventcollect.database.annotation.Table;
+import com.woodys.eventcollect.database.annotation.TableField;
+import com.woodys.eventcollect.database.db.MyDb;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

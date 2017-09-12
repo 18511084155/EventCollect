@@ -1,10 +1,8 @@
-package com.woodys.eventcollect.db.table;
+package com.woodys.eventcollect.database.table;
 
-import com.cz.dblibrary.annotation.FieldFilter;
-import com.cz.dblibrary.annotation.Table;
-import com.cz.dblibrary.annotation.TableField;
-
-import java.util.ArrayList;
+import com.woodys.eventcollect.database.annotation.FieldFilter;
+import com.woodys.eventcollect.database.annotation.Table;
+import com.woodys.eventcollect.database.annotation.TableField;
 
 /**
  * Created by woodys on 2017/9/7.

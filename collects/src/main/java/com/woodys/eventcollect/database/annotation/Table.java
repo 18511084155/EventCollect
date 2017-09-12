@@ -1,4 +1,4 @@
-package com.woodys.eventcollect.db.annotation;
+package com.woodys.eventcollect.database.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,13 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by cz on 16/3/5.
- * 标记字段名,防止字段修改,字段值不同
+ * Created by cz on 16/3/4.
  */
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface TableField {
-    String value();
-    boolean primaryKey() default false;//标记主键
+public @interface Table {
+    String value() default "";
+    String primaryKey() default "";//标记主键
     boolean autoIncrement() default false;//主键自增长
+    boolean exported() default false;//是否暴露
 }

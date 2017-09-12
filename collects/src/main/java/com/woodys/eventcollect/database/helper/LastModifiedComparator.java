@@ -1,4 +1,4 @@
-package com.woodys.eventcollect.db.helper;
+package com.woodys.eventcollect.database.helper;
 
 import android.support.annotation.NonNull;
 

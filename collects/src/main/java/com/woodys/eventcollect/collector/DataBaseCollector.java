@@ -2,10 +2,10 @@ package com.woodys.eventcollect.collector;
 
 import android.content.ContentUris;
 
-import com.woodys.eventcollect.db.DbHelper;
-import com.woodys.eventcollect.db.table.DeviceData;
-import com.woodys.eventcollect.db.table.EventData;
-import com.woodys.eventcollect.db.table.temp.TempEventData;
+import com.woodys.eventcollect.database.DbHelper;
+import com.woodys.eventcollect.database.table.DeviceData;
+import com.woodys.eventcollect.database.table.EventData;
+import com.woodys.eventcollect.database.table.temp.TempEventData;
 import com.woodys.eventcollect.mouble.ActionItem;
 import com.woodys.eventcollect.util.DeviceUtil;
 

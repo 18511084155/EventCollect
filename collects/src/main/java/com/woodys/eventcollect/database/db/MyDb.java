@@ -1,10 +1,10 @@
-package com.woodys.eventcollect.db.db;
+package com.woodys.eventcollect.database.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.woodys.eventcollect.db.DbHelper;
+import com.woodys.eventcollect.database.DbHelper;
 
 /**
  * @author momo

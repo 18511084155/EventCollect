@@ -1,8 +1,8 @@
-package com.woodys.eventcollect.db.helper;
+package com.woodys.eventcollect.database.helper;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.woodys.eventcollect.db.DbHelper;
+import com.woodys.eventcollect.database.DbHelper;
 
 
 /**

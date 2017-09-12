@@ -3,10 +3,10 @@ package com.woodys.eventcollect;
 import android.app.Application;
 import android.content.Context;
 
-import com.woodys.eventcollect.db.DbHelper;
+import com.woodys.eventcollect.database.DbHelper;
 import com.woodys.eventcollect.collector.DataBaseCollector;
 import com.woodys.eventcollect.collector.ICollector;
-import com.woodys.eventcollect.db.helper.OnCollectDbUpgradeListener;
+import com.woodys.eventcollect.database.helper.OnCollectDbUpgradeListener;
 import com.woodys.eventcollect.mouble.ActionItem;
 
 import java.util.concurrent.ExecutorService;

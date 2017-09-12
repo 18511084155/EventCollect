@@ -1,12 +1,12 @@
-package com.woodys.eventcollect.db;
+package com.woodys.eventcollect.database;
 
 import android.content.ContentValues;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import com.woodys.eventcollect.db.annotation.FieldFilter;
-import com.woodys.eventcollect.db.annotation.Table;
-import com.woodys.eventcollect.db.annotation.TableField;
+import com.woodys.eventcollect.database.annotation.FieldFilter;
+import com.woodys.eventcollect.database.annotation.Table;
+import com.woodys.eventcollect.database.annotation.TableField;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

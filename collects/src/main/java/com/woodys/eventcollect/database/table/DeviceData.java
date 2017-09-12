@@ -1,6 +1,6 @@
-package com.woodys.eventcollect.db.table;
-import com.cz.dblibrary.annotation.Table;
-import com.cz.dblibrary.annotation.TableField;
+package com.woodys.eventcollect.database.table;
+import com.woodys.eventcollect.database.annotation.Table;
+import com.woodys.eventcollect.database.annotation.TableField;
 
 /**
  * Created by woodys on 2017/9/8.

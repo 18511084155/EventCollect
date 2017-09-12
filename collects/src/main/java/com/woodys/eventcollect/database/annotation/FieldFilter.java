@@ -1,4 +1,4 @@
-package com.woodys.eventcollect.db.annotation;
+package com.woodys.eventcollect.database.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
