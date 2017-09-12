@@ -1,6 +1,5 @@
 package com.woodys.eventcollect.database.table;
 
-import com.woodys.eventcollect.database.annotation.FieldFilter;
 import com.woodys.eventcollect.database.annotation.Table;
 import com.woodys.eventcollect.database.annotation.TableField;
 

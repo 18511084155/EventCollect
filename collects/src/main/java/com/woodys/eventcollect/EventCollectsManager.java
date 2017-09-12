@@ -3,12 +3,16 @@ package com.woodys.eventcollect;
 import android.app.Application;
 import android.content.Context;
 
+import com.woodys.eventcollect.callback.Action;
+import com.woodys.eventcollect.callback.SendActionCallback;
 import com.woodys.eventcollect.database.DbHelper;
 import com.woodys.eventcollect.collector.DataBaseCollector;
 import com.woodys.eventcollect.collector.ICollector;
 import com.woodys.eventcollect.database.helper.OnCollectDbUpgradeListener;
+import com.woodys.eventcollect.database.table.temp.TempEventData;
 import com.woodys.eventcollect.mouble.ActionItem;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,6 +28,8 @@ public final class EventCollectsManager {
     private Context context;
     //事件收集器
     private static ICollector eventCollector = new DataBaseCollector();
+    //发送事件回调
+    private static SendActionCallback sendActionCallback;
     /**
      * 上报策略模式
      */
@@ -62,6 +68,11 @@ public final class EventCollectsManager {
         DbHelper.getPackageName();
         DbHelper.get().setOnDbUpgradeListener(new OnCollectDbUpgradeListener());
         uploadPolicy = UploadPolicy.UPLOAD_POLICY_WHILE_INITIALIZE;
+        return this;
+    }
+
+    public EventCollectsManager setSendActionCallback(SendActionCallback sendActionCallback){
+        this.sendActionCallback=sendActionCallback;
         return this;
     }
 
@@ -107,11 +118,24 @@ public final class EventCollectsManager {
 
 
     /**
-     * 上报数据
-     *
+     * 发送数据
      */
-    public static void report() {
-
+    public void sendAction() {
+        FIXED_THREAD_POOL.execute(new Runnable() {
+            @Override
+            public void run() {
+                if (null != sendActionCallback) {
+                    final ArrayList<TempEventData> items = (ArrayList<TempEventData>) eventCollector.queryItems(TempEventData.class, 100);
+                    sendActionCallback.sendAction(items, new Action<Boolean, Boolean>() {
+                        @Override
+                        public Boolean call(Boolean isSuccess) {
+                            eventCollector.deleteEvent(items.get(items.size()-1).eId);
+                            return true;
+                        }
+                    });
+                }
+            }
+        });
     }
 
 }

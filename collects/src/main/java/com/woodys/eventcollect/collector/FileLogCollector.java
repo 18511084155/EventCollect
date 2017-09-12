@@ -1,7 +1,6 @@
 package com.woodys.eventcollect.collector;
 
 
-import com.woodys.eventcollect.database.table.temp.TempEventData;
 import com.woodys.eventcollect.mouble.ActionItem;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class FileLogCollector extends ICollector {
     }
 
     @Override
-    public ArrayList<TempEventData> queryItems(Class<TempEventData> clazz, int number) {
+    public ArrayList<?> queryItems(Class<?> clazz, int number) {
         return null;
     }
 }

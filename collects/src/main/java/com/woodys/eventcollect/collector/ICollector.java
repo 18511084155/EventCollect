@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.woodys.eventcollect.database.table.DeviceData;
 import com.woodys.eventcollect.database.table.EventData;
-import com.woodys.eventcollect.database.table.temp.TempEventData;
 import com.woodys.eventcollect.mouble.ActionItem;
 import com.woodys.eventcollect.mouble.event.BaseEvent;
 import com.woodys.eventcollect.mouble.event.ClickEvent;
@@ -87,5 +86,5 @@ public abstract class ICollector{
      * @param number
      * @return
      */
-    public abstract ArrayList<TempEventData> queryItems(Class<TempEventData> clazz, int number);
+    public abstract ArrayList<?> queryItems(Class<?> clazz, int number);
 }

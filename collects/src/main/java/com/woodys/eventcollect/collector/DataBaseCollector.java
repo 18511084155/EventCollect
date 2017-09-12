@@ -5,7 +5,6 @@ import android.content.ContentUris;
 import com.woodys.eventcollect.database.DbHelper;
 import com.woodys.eventcollect.database.table.DeviceData;
 import com.woodys.eventcollect.database.table.EventData;
-import com.woodys.eventcollect.database.table.temp.TempEventData;
 import com.woodys.eventcollect.mouble.ActionItem;
 import com.woodys.eventcollect.util.DeviceUtil;
 
@@ -66,7 +65,7 @@ public class DataBaseCollector extends ICollector{
     }
 
     @Override
-    public ArrayList<TempEventData> queryItems(Class<TempEventData> clazz, int number) {
+    public ArrayList<?> queryItems(Class<?> clazz, int number) {
         return DbHelper.get().querySQLItems(clazz,"select * from event_data a,device_data b where a.d_id=b._id order by a._id asc limit 0,?",new String[]{String.valueOf(number)});
     }
 

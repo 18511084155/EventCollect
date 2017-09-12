@@ -1,13 +1,13 @@
 package com.woodys.eventcollect.database.table.temp;
 
-import com.woodys.eventcollect.database.annotation.Table;
 import com.woodys.eventcollect.database.annotation.TableField;
 
 /**
  * Created by woodys on 2017/9/7.
  */
-@Table(value = "temp_event_data")
 public class TempEventData {
+    @TableField(value = "_id")
+    public long eId;//事件信息id
     public int width;// 屏幕宽
     public int height;// 屏幕高
     @TableField(value = "android_version")
@@ -48,5 +48,4 @@ public class TempEventData {
     public String identify;// 描述信息
 
     public long ct;//创建时间
-
 }
