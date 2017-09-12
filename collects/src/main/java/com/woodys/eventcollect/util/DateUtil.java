@@ -22,7 +22,6 @@ public class DateUtil {
      * getDate
      * yyyy-MM-dd HH:mm:ss
      *
-     * @param
      * @param format
      *            如yyyy-MM-dd HH:mm:ss
      * @return

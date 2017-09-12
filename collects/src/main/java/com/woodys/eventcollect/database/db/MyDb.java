@@ -8,7 +8,7 @@ import com.woodys.eventcollect.database.DbHelper;
 
 /**
  * @author momo
- * @Date 2014/9/20
+ * 2014/9/20
  */
 public class MyDb extends SQLiteOpenHelper {
     private static final int CURRENT_VERSION = 1;

@@ -94,7 +94,6 @@ public final class EventCollectsManager {
     /**
      * 添加对应的事件
      * @param actionItem
-     * @return
      */
     public void addAction(final ActionItem actionItem) {
         FIXED_THREAD_POOL.execute(new Runnable() {

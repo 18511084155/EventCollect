@@ -67,7 +67,6 @@ public class DbTable {
      *
      * @param item
      * @return
-     * @throws IllegalAccessException
      */
     public static ContentValues getContentValue(Object item) {
         Class<?> clazz = item.getClass();

@@ -1,6 +1,5 @@
 package com.woodys.eventcollect.database.helper;
 
-import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.util.Comparator;
@@ -10,7 +9,7 @@ import java.util.Comparator;
  */
 final class LastModifiedComparator implements Comparator<File> {
     @Override
-    public int compare(@NonNull File lhs, @NonNull File rhs) {
+    public int compare(File lhs,File rhs) {
         final long l = lhs.lastModified();
         final long r = rhs.lastModified();
         return l < r ? -1 : (l == r ? 0 : 1);
