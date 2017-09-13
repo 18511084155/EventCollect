@@ -137,7 +137,9 @@ public final class EventCollectsManager {
                     sendActionCallback.sendAction(items, new Action<Boolean, Boolean>() {
                         @Override
                         public Boolean call(Boolean isSuccess) {
-                            eventCollector.deleteEvent(items.get(items.size()-1).eId);
+                            if(isSuccess) {
+                                eventCollector.deleteEvent(items.get(items.size() - 1).eId);
+                            }
                             return true;
                         }
                     });
