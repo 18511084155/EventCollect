@@ -107,6 +107,14 @@ public final class EventCollectsManager {
      * @param eventItem
      */
     public void addAction(final EventItem eventItem) {
+        eventCollector.insertEvent(eventItem);
+    }
+
+    /**
+     * 添加对应的事件
+     * @param eventItem
+     */
+    public void addAsyncAction(final EventItem eventItem) {
         FIXED_THREAD_POOL.execute(new Runnable() {
             @Override
             public void run() {
