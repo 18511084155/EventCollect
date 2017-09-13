@@ -5,7 +5,7 @@ import android.content.ContentUris;
 import com.woodys.eventcollect.database.DbHelper;
 import com.woodys.eventcollect.database.table.DeviceData;
 import com.woodys.eventcollect.database.table.EventData;
-import com.woodys.eventcollect.mouble.ActionItem;
+import com.woodys.eventcollect.mouble.EventItem;
 import com.woodys.eventcollect.util.DeviceUtil;
 
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class DataBaseCollector extends ICollector{
 
     @Override
-    public long insertEvent(ActionItem actionItem) {
-        EventData item = initEventData(DbHelper.getContext(), actionItem);
+    public long insertEvent(EventItem eventItem) {
+        EventData item = initEventData(DbHelper.getContext(), eventItem);
         DeviceData queryItem = null;
         try {
             queryItem = DbHelper.get().queryItem(DeviceData.class, "device_id=?", new String[]{DeviceUtil.getAndroidId(DbHelper.getContext())}, null);
@@ -34,7 +34,7 @@ public class DataBaseCollector extends ICollector{
     }
 
     @Override
-    public void insertBatchEvent(ArrayList<ActionItem> actionItems) {
+    public void insertBatchEvent(ArrayList<EventItem> eventItems) {
         long dId = 0l;
         try {
             DeviceData queryItem = DbHelper.get().queryItem(DeviceData.class, "device_id=?", new String[]{DeviceUtil.getAndroidId(DbHelper.getContext())}, null);
@@ -50,8 +50,8 @@ public class DataBaseCollector extends ICollector{
         //设置关联关系
         ArrayList<EventData> items = new ArrayList<>();
         EventData item = null;
-        for (ActionItem actionItem : actionItems){
-            item = initEventData(DbHelper.getContext(), actionItem);
+        for (EventItem eventItem : eventItems){
+            item = initEventData(DbHelper.getContext(), eventItem);
             item.dId = dId;
             items.add(item);
         }

@@ -10,7 +10,7 @@ import com.woodys.eventcollect.collector.DataBaseCollector;
 import com.woodys.eventcollect.collector.ICollector;
 import com.woodys.eventcollect.database.helper.OnCollectDbUpgradeListener;
 import com.woodys.eventcollect.database.table.temp.TempEventData;
-import com.woodys.eventcollect.mouble.ActionItem;
+import com.woodys.eventcollect.mouble.EventItem;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -104,13 +104,13 @@ public final class EventCollectsManager {
 
     /**
      * 添加对应的事件
-     * @param actionItem
+     * @param eventItem
      */
-    public void addAction(final ActionItem actionItem) {
+    public void addAction(final EventItem eventItem) {
         FIXED_THREAD_POOL.execute(new Runnable() {
             @Override
             public void run() {
-                eventCollector.insertEvent(actionItem);
+                eventCollector.insertEvent(eventItem);
             }
         });
     }

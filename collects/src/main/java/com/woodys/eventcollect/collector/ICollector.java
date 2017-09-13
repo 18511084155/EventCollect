@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.woodys.eventcollect.database.table.DeviceData;
 import com.woodys.eventcollect.database.table.EventData;
-import com.woodys.eventcollect.mouble.ActionItem;
+import com.woodys.eventcollect.mouble.EventItem;
 import com.woodys.eventcollect.mouble.event.BaseEvent;
 import com.woodys.eventcollect.mouble.event.ClickEvent;
 import com.woodys.eventcollect.mouble.event.EnterPageEvent;
@@ -34,7 +34,7 @@ public abstract class ICollector{
         return deviceData;
     }
 
-    protected EventData initEventData(Context context,ActionItem userEvent) {
+    protected EventData initEventData(Context context,EventItem userEvent) {
         EventData eventData = new EventData();
 
         eventData.type = userEvent.type;
@@ -68,12 +68,12 @@ public abstract class ICollector{
     /**
      * 添加单条数据
      */
-    public abstract long insertEvent(ActionItem item);
+    public abstract long insertEvent(EventItem item);
 
     /**
      * 批量添加数据
      */
-    public abstract void insertBatchEvent(ArrayList<ActionItem> item);
+    public abstract void insertBatchEvent(ArrayList<EventItem> item);
 
     /**
      * 删除数据

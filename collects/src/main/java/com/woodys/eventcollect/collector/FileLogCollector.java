@@ -1,7 +1,7 @@
 package com.woodys.eventcollect.collector;
 
 
-import com.woodys.eventcollect.mouble.ActionItem;
+import com.woodys.eventcollect.mouble.EventItem;
 
 import java.util.ArrayList;
 
@@ -12,12 +12,12 @@ public class FileLogCollector extends ICollector {
 
 
     @Override
-    public long insertEvent(ActionItem item) {
+    public long insertEvent(EventItem item) {
         return 0;
     }
 
     @Override
-    public void insertBatchEvent(ArrayList<ActionItem> items) {
+    public void insertBatchEvent(ArrayList<EventItem> items) {
 
     }
 
