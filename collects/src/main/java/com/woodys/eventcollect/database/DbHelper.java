@@ -115,7 +115,7 @@ public class DbHelper {
             Context context = getContext();
             if (null != context && null != uri) {
                 ContentResolver resolver = context.getContentResolver();
-                rtnUri=resolver.insert(uri, DbTable.getContentValue(item));
+                rtnUri=resolver.insert(uri, DbTable.getContentValue(item,true));
             }
         }
         return rtnUri;
@@ -128,7 +128,7 @@ public class DbHelper {
             Uri uri = DbTable.getUri(obj.getClass());
             ContentValues[] values = new ContentValues[items.size()];
             for (int i = 0; i < items.size(); i++) {
-                values[i] = DbTable.getContentValue(items.get(i));
+                values[i] = DbTable.getContentValue(items.get(i),true);
             }
             Context context = getContext();
             if (null != context && null != uri) {
@@ -146,7 +146,7 @@ public class DbHelper {
             Context context = getContext();
             if (null != context && null != uri) {
                 ContentResolver resolver = context.getContentResolver();
-                code = resolver.update(uri, DbTable.getContentValue(item), where, whereArgs);
+                code = resolver.update(uri, DbTable.getContentValue(item,true), where, whereArgs);
             }
         }
         return code;

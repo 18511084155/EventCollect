@@ -68,7 +68,7 @@ public class DbTable {
      * @param item
      * @return
      */
-    public static ContentValues getContentValue(Object item) {
+    public static ContentValues getContentValue(Object item,boolean isOperate) {
         Class<?> clazz = item.getClass();
         ContentValues values = new ContentValues();
         Field[] fields = clazz.getDeclaredFields();
@@ -77,6 +77,7 @@ public class DbTable {
             field.setAccessible(true);
             String name;
             TableField tableField = field.getAnnotation(TableField.class);
+            if(null != tableField && isOperate && tableField.autoIncrement()){continue;}
             if (null != tableField && !TextUtils.isEmpty(tableField.value())) {
                 name = tableField.value();
             } else {

@@ -105,7 +105,7 @@ public class DbProvider extends ContentProvider {
      */
     private void createTable(Class<?> clazz) {
         Field[] fields = clazz.getDeclaredFields();
-        List<Pair<String,Boolean>> primaryKeys=new ArrayList<>();
+        List<Pair<String,Pair<String,Boolean>>> primaryKeys=new ArrayList<>();
         HashMap<String,String> fieldItems=new HashMap<>();
         for (int i = 0; i < fields.length; i++) {
             Class<?> type = fields[i].getType();
@@ -130,7 +130,7 @@ public class DbProvider extends ContentProvider {
                     fieldName = tableField.value();
                     if (tableField.primaryKey()) {
                         //主键
-                        primaryKeys.add(new Pair<>(fieldName,tableField.autoIncrement()));
+                        primaryKeys.add(new Pair<>(fieldName,new Pair<>(fieldType,tableField.autoIncrement())));
                     }else{
                         fieldItems.put(fieldName,fieldType);
                     }
@@ -153,8 +153,8 @@ public class DbProvider extends ContentProvider {
         //一个主键时,设置单个主键
         int size = primaryKeys.size();
         if(1==size){
-            Pair<String, Boolean> primaryPair = primaryKeys.get(0);
-            sql += (primaryPair.first+" "+fieldItems.get(primaryPair.first)+" PRIMARY KEY "+(primaryPair.second?"AUTOINCREMENT":"")+",");
+            Pair<String, Pair<String,Boolean>> primaryPair = primaryKeys.get(0);
+            sql += (primaryPair.first+" "+primaryPair.second.first+" PRIMARY KEY "+(primaryPair.second.second?"AUTOINCREMENT":"")+",");
         }
         int index=0;
         for(Map.Entry<String,String> entry:fieldItems.entrySet()){
@@ -164,7 +164,7 @@ public class DbProvider extends ContentProvider {
         if(1<size){
             sql += (", PRIMARY KEY(");
             for(int i=0;i<size;i++){
-                Pair<String, Boolean> pair = primaryKeys.get(i);
+                Pair<String, Pair<String,Boolean>> pair = primaryKeys.get(i);
                 sql+=(pair.first+(i!=size-1?",":"))"));
             }
         } else {
