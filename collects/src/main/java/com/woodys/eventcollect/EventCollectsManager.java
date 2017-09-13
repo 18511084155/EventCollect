@@ -124,11 +124,16 @@ public final class EventCollectsManager {
     }
 
 
-
     /**
      * 发送数据
      */
     public void sendAction() {
+        sendAction(null);
+    }
+    /**
+     * 发送数据
+     */
+    public void sendAction(final Action<Object,Boolean> action) {
         FIXED_THREAD_POOL.execute(new Runnable() {
             @Override
             public void run() {
@@ -140,6 +145,7 @@ public final class EventCollectsManager {
                             if(isSuccess) {
                                 eventCollector.deleteEvent(items.get(items.size() - 1).eId);
                             }
+                            if (null!=action) action.call(isSuccess);
                             return true;
                         }
                     });
