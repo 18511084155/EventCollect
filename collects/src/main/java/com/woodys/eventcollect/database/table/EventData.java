@@ -8,12 +8,12 @@ import com.woodys.eventcollect.database.annotation.TableField;
  */
 @Table(value = "event_data")
 public class EventData {
-    @TableField(value = "_id", primaryKey = true, autoIncrement = true)
-    public long eId;//事件信息id
+    @TableField(value = "e_id", primaryKey = true, autoIncrement = true)
+    public int eId;//事件信息id
     @TableField(value = "phone_no")
     public String phoneNo;
     @TableField(value = "d_id")
-    public long dId;// 设备信息id
+    public int dId;// 设备信息id
     @TableField(value = "app_version")
     public String appVersion;// 版本
     public String operator;// 运营商

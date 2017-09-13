@@ -61,12 +61,12 @@ public class DataBaseCollector extends ICollector{
 
     @Override
     public void deleteEvent(long lastId){
-        DbHelper.get().deleteItem(EventData.class,"_id<=?",new String[]{String.valueOf(lastId)});
+        DbHelper.get().deleteItem(EventData.class,"e_id<=?",new String[]{String.valueOf(lastId)});
     }
 
     @Override
     public ArrayList<?> queryItems(Class<?> clazz, int number) {
-        return DbHelper.get().querySQLItems(clazz,"select * from event_data a,device_data b where a.d_id=b._id order by a._id asc limit 0,?",new String[]{String.valueOf(number)});
+        return DbHelper.get().querySQLItems(clazz,"select * from event_data a,device_data b where a.d_id=b.d_id order by a.e_id asc limit 0,?",new String[]{String.valueOf(number)});
     }
 
 }

@@ -7,8 +7,8 @@ import com.woodys.eventcollect.database.annotation.TableField;
  */
 @Table(value = "device_data")
 public class DeviceData {
-    @TableField(value = "_id", primaryKey = true, autoIncrement = true)
-    public long dId;//设备信息id
+    @TableField(value = "d_id", primaryKey = true, autoIncrement = true)
+    public int dId;//设备信息id
     public int width;// 屏幕宽
     public int height;// 屏幕高
     @TableField(value = "android_version")

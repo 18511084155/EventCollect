@@ -6,8 +6,8 @@ import com.woodys.eventcollect.database.annotation.TableField;
  * Created by woodys on 2017/9/7.
  */
 public class TempEventData {
-    @TableField(value = "_id")
-    public long eId;//事件信息id
+    @TableField(value = "e_id")
+    public int eId;//事件信息id
     public int width;// 屏幕宽
     public int height;// 屏幕高
     @TableField(value = "android_version")
