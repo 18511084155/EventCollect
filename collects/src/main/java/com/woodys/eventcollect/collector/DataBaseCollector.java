@@ -23,7 +23,7 @@ public class DataBaseCollector extends ICollector{
             queryItem = DbHelper.get().queryItem(DeviceData.class, "device_id=?", new String[]{DeviceUtil.getAndroidId(DbHelper.getContext())}, null);
             if (null == queryItem) {
                 // insert
-                item.dId = ContentUris.parseId(DbHelper.get().insertItem(getDeviceData(DbHelper.getContext())));
+                item.dId = (int) ContentUris.parseId(DbHelper.get().insertItem(getDeviceData(DbHelper.getContext())));
             }else {
                 item.dId = queryItem.dId;
             }
@@ -35,12 +35,12 @@ public class DataBaseCollector extends ICollector{
 
     @Override
     public void insertBatchEvent(ArrayList<EventItem> eventItems) {
-        long dId = 0l;
+        int dId = 0;
         try {
             DeviceData queryItem = DbHelper.get().queryItem(DeviceData.class, "device_id=?", new String[]{DeviceUtil.getAndroidId(DbHelper.getContext())}, null);
             if (null == queryItem) {
                 // insert
-                dId = ContentUris.parseId(DbHelper.get().insertItem(getDeviceData(DbHelper.getContext())));
+                dId = (int) ContentUris.parseId(DbHelper.get().insertItem(getDeviceData(DbHelper.getContext())));
             }else {
                 dId = queryItem.dId;
             }
