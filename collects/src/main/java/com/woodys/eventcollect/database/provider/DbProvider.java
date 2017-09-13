@@ -131,11 +131,14 @@ public class DbProvider extends ContentProvider {
                     if (tableField.primaryKey()) {
                         //主键
                         primaryKeys.add(new Pair<>(fieldName,tableField.autoIncrement()));
+                    }else{
+                        fieldItems.put(fieldName,fieldType);
                     }
                 } else {
                     fieldName = fields[i].getName();
+                    fieldItems.put(fieldName,fieldType);
                 }
-                fieldItems.put(fieldName,fieldType);
+
             }
         }
         String tableName = DbTable.getTable(clazz);
