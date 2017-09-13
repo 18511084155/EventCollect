@@ -1,7 +1,8 @@
-package com.woodys.eventcollect;
+package com.woodys.demo;
 
 import android.app.Application;
 
+import com.woodys.eventcollect.EventCollectsManager;
 import com.woodys.eventcollect.callback.Action;
 import com.woodys.eventcollect.callback.SendActionCallback;
 import com.woodys.eventcollect.database.table.temp.TempEventData;
