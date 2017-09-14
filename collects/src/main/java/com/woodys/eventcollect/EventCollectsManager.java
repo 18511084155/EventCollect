@@ -65,7 +65,6 @@ public final class EventCollectsManager {
 
     public EventCollectsManager init(Application application){
         context = application.getApplicationContext();
-        DbHelper.getPackageName();
         DbHelper.get().setOnDbUpgradeListener(new OnCollectDbUpgradeListener());
         uploadPolicy = UploadPolicy.UPLOAD_POLICY_WHILE_INITIALIZE;
         return this;

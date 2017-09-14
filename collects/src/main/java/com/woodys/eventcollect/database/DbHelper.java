@@ -58,6 +58,10 @@ public class DbHelper {
         return getPackageName()+"_db";
     }
 
+    public static String getAuthority(){
+        return getPackageName()+".collects";
+    }
+
     public static DbHelper get(){
         return helper;
     }

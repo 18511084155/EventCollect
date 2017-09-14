@@ -16,10 +16,10 @@ import java.util.ArrayList;
  * Created by cz on 2015/1/1.
  */
 public class DbTable {
-    public static final String AUTHORITY;
+    public static String AUTHORITY;
 
     static {
-        AUTHORITY = DbHelper.getPackageName();
+        AUTHORITY = DbHelper.getAuthority();
     }
     /**
      * 获得对象字段列
@@ -117,6 +117,7 @@ public class DbTable {
      * @return
      */
     public static Uri getUri(Class<?> clazz) {
+        if(TextUtils.isEmpty(AUTHORITY)) AUTHORITY = DbHelper.getAuthority();
         return Uri.parse("content://" + AUTHORITY + "/class:" + clazz.getName());
     }
 
@@ -127,6 +128,7 @@ public class DbTable {
      * @return
      */
     public static Uri getUri(String tableName) {
+        if(TextUtils.isEmpty(AUTHORITY)) AUTHORITY = DbHelper.getAuthority();
         return Uri.parse("content://" + AUTHORITY + "/table:" + tableName);
     }
 
