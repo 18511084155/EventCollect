@@ -24,13 +24,13 @@ public class EventData {
     //事件信息
     public String type;// 类型
     public String clazz;// class
+
+    @TableField(value = "title")
+    public String title;// 页面title
+
     //type is leavePage
     @TableField(value = "offset_time")
     public long offsetTime;// 页面停留时间，当前时间减去进入的时间
-
-    //type is enterPage
-    @TableField(value = "title")
-    public String title;// 页面title
 
     //type is click
     public int x;// x坐标

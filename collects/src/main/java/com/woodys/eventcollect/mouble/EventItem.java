@@ -13,10 +13,9 @@ public class EventItem {
 
     //事件信息
     public String type;// 类型
-    public String clazz;// class
+    public String clazz;//class
 
-    //type is enterPage
-    public String title;// 页面title
+    public String title;//title
 
     //type is leavePage
     public long offsetTime;// 页面停留时间，当前时间减去进入的时间
