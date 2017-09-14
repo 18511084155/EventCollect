@@ -5,27 +5,28 @@ package com.woodys.eventcollect.mouble;
  * 扩展参数
  */
 
-public class EventItem extends UserEvent{
+public class EventItem {
+    public long ct;
     public String phoneNo;
     public String latitude;// 纬度
     public String longitude;//经度
 
-    /*public int tokenId;
-    public EventType type;
-    public String clazzName;
-    public String token;
-    public String value;
-    public Object args;
-    public long ct;
+    //事件信息
+    public String type;// 类型
+    public String clazz;// class
+
+    //type is enterPage
+    public String title;// 页面title
+
+    //type is leavePage
+    public long offsetTime;// 页面停留时间，当前时间减去进入的时间
+
+    //type is click
+    public int x;// x坐标
+    public int y;// y坐标
+    public String descriptor;// 描述信息
 
     public EventItem(){
-
-    }
-
-    public EventItem(String phoneNo, String latitude, String longitude) {
-        this.phoneNo = phoneNo;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.ct = System.currentTimeMillis();
-    }*/
+    }
 }

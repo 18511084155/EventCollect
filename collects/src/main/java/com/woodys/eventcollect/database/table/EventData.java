@@ -23,22 +23,19 @@ public class EventData {
 
     //事件信息
     public String type;// 类型
-    public String page;// class
+    public String clazz;// class
+    //type is leavePage
     @TableField(value = "offset_time")
-    public long offsetTime;// 当前操作相对于上次操作的偏移时间,后端收到消息后解析时间
+    public long offsetTime;// 页面停留时间，当前时间减去进入的时间
 
     //type is enterPage
-    @TableField(value = "page_title")
-    public String pageTitle;// 页面title
-
-    //type is leavePage
-    @TableField(value = "standing_time")
-    public long standingTime;// 页面停留时间，当前时间减去进入的时间
+    @TableField(value = "title")
+    public String title;// 页面title
 
     //type is click
     public int x;// x坐标
     public int y;// y坐标
-    public String identify;// 描述信息
+    public String descriptor;// 描述信息
 
     public long ct;//创建时间
 

@@ -55,7 +55,7 @@ public class DbHelper {
     }
 
     public static String getDefaultDatabaseName(){
-        return getPackageName()+"_collect_db";
+        return getPackageName()+"_db";
     }
 
     public static DbHelper get(){

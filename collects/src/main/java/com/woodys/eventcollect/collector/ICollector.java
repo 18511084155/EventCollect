@@ -5,10 +5,6 @@ import android.content.Context;
 import com.woodys.eventcollect.database.table.DeviceData;
 import com.woodys.eventcollect.database.table.EventData;
 import com.woodys.eventcollect.mouble.EventItem;
-import com.woodys.eventcollect.mouble.event.BaseEvent;
-import com.woodys.eventcollect.mouble.event.ClickEvent;
-import com.woodys.eventcollect.mouble.event.EnterPageEvent;
-import com.woodys.eventcollect.mouble.event.LeavePageEvent;
 import com.woodys.eventcollect.util.DeviceUtil;
 import com.woodys.eventcollect.util.NetworkUtil;
 
@@ -34,34 +30,26 @@ public abstract class ICollector{
         return deviceData;
     }
 
-    protected EventData initEventData(Context context,EventItem userEvent) {
+    protected EventData initEventData(Context context,EventItem eventItem) {
         EventData eventData = new EventData();
-
-        eventData.type = userEvent.type;
-        eventData.page = userEvent.page;
-        eventData.offsetTime = userEvent.offsetTime;
-        eventData.ct = System.currentTimeMillis();
-
-        eventData.phoneNo = userEvent.phoneNo;
-        eventData.latitude = userEvent.latitude;
-        eventData.longitude = userEvent.longitude;
+        eventData.phoneNo = eventItem.phoneNo;
+        eventData.latitude = eventItem.latitude;
+        eventData.longitude = eventItem.longitude;
 
         eventData.appVersion = DeviceUtil.getAppVersionName(context);
         eventData.operator = DeviceUtil.getSimOperatorName(context);
         eventData.network = NetworkUtil.getNetWorkState(context);
 
-        BaseEvent event = userEvent.extraInfo;
-        if (event instanceof ClickEvent) {
-            eventData.x=((ClickEvent) event).x;
-            eventData.y=((ClickEvent) event).y;
-            eventData.identify=((ClickEvent) event).identify;
-        } else if (event instanceof EnterPageEvent) {
-            eventData.pageTitle=((EnterPageEvent)event).pageTitle;
-        } else if (event instanceof LeavePageEvent) {
-            eventData.pageTitle=((LeavePageEvent)event).pageTitle;
-            eventData.standingTime=((LeavePageEvent)event).standingTime;
-        }
+        eventData.type = eventItem.type;
+        eventData.clazz = eventItem.clazz;
 
+        eventData.x= eventItem.x;
+        eventData.y= eventItem.y;
+        eventData.descriptor= eventItem.descriptor;
+
+        eventData.title= eventItem.title;
+
+        eventData.offsetTime = eventItem.offsetTime;
         return eventData;
     }
 

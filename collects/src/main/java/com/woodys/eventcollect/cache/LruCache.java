@@ -2,8 +2,6 @@ package com.woodys.eventcollect.cache;
 
 import android.util.Log;
 
-import com.woodys.eventcollect.util.StatLog;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,6 +13,7 @@ import java.util.Map;
  * overview.
  */
 public class LruCache<K, V> {
+    public static final String TAG = LruCache.class.getName();
     private final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     private final LinkedHashMap<K, V> map;
@@ -50,7 +49,7 @@ public class LruCache<K, V> {
             protected boolean removeEldestEntry(Map.Entry eldest) {
                 boolean ret = maxSize < size();
                 if (ret) {
-                    StatLog.d("Evict " + eldest.getKey());
+                    Log.d(TAG,"Evict " + eldest.getKey());
                 }
                 return ret;
             }

@@ -19,7 +19,7 @@ public class DbTable {
     public static final String AUTHORITY;
 
     static {
-        AUTHORITY = DbHelper.getDefaultDatabaseName();
+        AUTHORITY = DbHelper.getPackageName();
     }
     /**
      * 获得对象字段列
