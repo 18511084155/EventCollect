@@ -240,7 +240,7 @@ public class DbProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        db=new MyDb(DbHelper.getContext()).getWritableDatabase();
+        db = new MyDb(DbHelper.getContext()).getWritableDatabase();
         return true;
     }
 

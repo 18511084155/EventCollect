@@ -10,24 +10,23 @@ import java.util.ArrayList;
  */
 public class FileLogCollector extends ICollector {
 
-
     @Override
-    public long insertEvent(EventItem item) {
+    public long insertData(EventItem item) throws Exception {
         return 0;
     }
 
     @Override
-    public void insertBatchEvent(ArrayList<EventItem> items) {
+    public void insertBatchData(ArrayList<EventItem> items) throws Exception {
 
     }
 
     @Override
-    public void deleteEvent(long lastId) {
+    public void deleteData(long lastId) throws Exception {
 
     }
 
     @Override
-    public ArrayList<?> queryItems(Class<?> clazz, int number) {
+    public ArrayList<?> queryLists(Class<?> clazz, int number) throws Exception {
         return null;
     }
 }

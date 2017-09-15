@@ -105,8 +105,12 @@ public final class EventCollectsManager {
      * 添加对应的事件
      * @param eventItem
      */
-    public void addAction(final EventItem eventItem) {
-        eventCollector.insertEvent(eventItem);
+    public void addAction(final EventItem eventItem){
+        try {
+            eventCollector.insertEvent(eventItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -117,7 +121,11 @@ public final class EventCollectsManager {
         FIXED_THREAD_POOL.execute(new Runnable() {
             @Override
             public void run() {
-                eventCollector.insertEvent(eventItem);
+                try {
+                    eventCollector.insertEvent(eventItem);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -137,17 +145,25 @@ public final class EventCollectsManager {
             @Override
             public void run() {
                 if (null != sendActionCallback) {
-                    final ArrayList<TempEventData> items = (ArrayList<TempEventData>) eventCollector.queryItems(TempEventData.class, 100);
-                    sendActionCallback.sendAction(items, new Action<Boolean, Boolean>() {
-                        @Override
-                        public Boolean call(Boolean isSuccess) {
-                            if(isSuccess) {
-                                eventCollector.deleteEvent(items.get(items.size() - 1).eId);
+                    try {
+                        final ArrayList<TempEventData> items = (ArrayList<TempEventData>) eventCollector.queryItems(TempEventData.class, 100);
+                        sendActionCallback.sendAction(items, new Action<Boolean, Boolean>() {
+                            @Override
+                            public Boolean call(Boolean isSuccess) {
+                                if(isSuccess) {
+                                    try {
+                                        eventCollector.deleteEvent(items.get(items.size() - 1).eId);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                if (null!=action) action.call(isSuccess);
+                                return true;
                             }
-                            if (null!=action) action.call(isSuccess);
-                            return true;
-                        }
-                    });
+                        });
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class DataBaseCollector extends ICollector{
 
     @Override
-    public long insertEvent(EventItem eventItem) {
+    public long insertData(EventItem eventItem) {
         EventData item = initEventData(DbHelper.getContext(), eventItem);
         DeviceData queryItem = null;
         try {
@@ -34,7 +34,7 @@ public class DataBaseCollector extends ICollector{
     }
 
     @Override
-    public void insertBatchEvent(ArrayList<EventItem> eventItems) {
+    public void insertBatchData(ArrayList<EventItem> eventItems) {
         int dId = 0;
         try {
             DeviceData queryItem = DbHelper.get().queryItem(DeviceData.class, "device_id=?", new String[]{DeviceUtil.getAndroidId(DbHelper.getContext())}, null);
@@ -60,12 +60,12 @@ public class DataBaseCollector extends ICollector{
     }
 
     @Override
-    public void deleteEvent(long lastId){
+    public void deleteData(long lastId){
         DbHelper.get().deleteItem(EventData.class,"e_id<=?",new String[]{String.valueOf(lastId)});
     }
 
     @Override
-    public ArrayList<?> queryItems(Class<?> clazz, int number) {
+    public ArrayList<?> queryLists(Class<?> clazz, int number) {
         return DbHelper.get().querySQLItems(clazz,"select * from event_data a,device_data b where a.d_id=b.d_id order by a.e_id asc limit 0,?",new String[]{String.valueOf(number)});
     }
 

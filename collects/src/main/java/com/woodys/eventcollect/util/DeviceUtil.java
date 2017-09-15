@@ -174,4 +174,22 @@ public class DeviceUtil {
         return providersName;
     }
 
+    /**
+     * 判断某个权限是否授权
+     * @param permissionName 权限名称，比如：android.permission.READ_PHONE_STATE
+     * *
+     * @return
+     */
+
+    public static boolean hasPermission(Context context,String permissionName){
+        boolean result = false;
+        try{
+            PackageManager pm = context.getPackageManager();
+            result = PackageManager.PERMISSION_GRANTED == pm.checkPermission(permissionName, context.getPackageName());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }
