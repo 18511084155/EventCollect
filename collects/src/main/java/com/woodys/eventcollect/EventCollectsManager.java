@@ -22,8 +22,10 @@ import java.util.concurrent.Executors;
  * Created by woodys on 2016-04-06.
  */
 public final class EventCollectsManager {
+    public static boolean enable = true;
     private static final ExecutorService FIXED_THREAD_POOL;
     private static final EventCollectsManager instance;
+
 
     private Context context;
     //事件收集器
@@ -70,6 +72,16 @@ public final class EventCollectsManager {
         return this;
     }
 
+    /**
+     * 开启是否启用收集和发送功能
+     * @param enable
+     * @return
+     */
+    public EventCollectsManager setEnable(boolean enable){
+        this.enable = enable;
+        return this;
+    }
+
     public EventCollectsManager setSendActionCallback(SendActionCallback sendActionCallback){
         this.sendActionCallback=sendActionCallback;
         return this;
@@ -106,10 +118,12 @@ public final class EventCollectsManager {
      * @param eventItem
      */
     public void addAction(final EventItem eventItem){
-        try {
-            eventCollector.insertEvent(eventItem);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (null != eventCollector && enable) {
+            try {
+                eventCollector.insertEvent(eventItem);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -118,16 +132,18 @@ public final class EventCollectsManager {
      * @param eventItem
      */
     public void addAsyncAction(final EventItem eventItem) {
-        FIXED_THREAD_POOL.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    eventCollector.insertEvent(eventItem);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        if (null != eventCollector && enable) {
+            FIXED_THREAD_POOL.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        eventCollector.insertEvent(eventItem);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
 
@@ -141,32 +157,32 @@ public final class EventCollectsManager {
      * 发送数据
      */
     public void sendAction(final Action<Object,Boolean> action) {
-        FIXED_THREAD_POOL.execute(new Runnable() {
-            @Override
-            public void run() {
-                if (null != sendActionCallback) {
-                    try {
-                        final ArrayList<TempEventData> items = (ArrayList<TempEventData>) eventCollector.queryItems(TempEventData.class, 100);
-                        sendActionCallback.sendAction(items, new Action<Boolean, Boolean>() {
-                            @Override
-                            public Boolean call(Boolean isSuccess) {
-                                if(isSuccess) {
-                                    try {
-                                        eventCollector.deleteEvent(items.get(items.size() - 1).eId);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
+        if (null != sendActionCallback && enable) {
+            FIXED_THREAD_POOL.execute(new Runnable() {
+                @Override
+                public void run() {
+                try {
+                    final ArrayList<TempEventData> items = (ArrayList<TempEventData>) eventCollector.queryItems(TempEventData.class, 100);
+                    sendActionCallback.sendAction(items, new Action<Boolean, Boolean>() {
+                        @Override
+                        public Boolean call(Boolean isSuccess) {
+                            if (isSuccess) {
+                                try {
+                                    eventCollector.deleteEvent(items.get(items.size() - 1).eId);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
-                                if (null!=action) action.call(isSuccess);
-                                return true;
                             }
-                        });
-                    }catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                            if (null != action) action.call(isSuccess);
+                            return true;
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }
-        });
+                }
+            });
+        }
     }
 
 }
