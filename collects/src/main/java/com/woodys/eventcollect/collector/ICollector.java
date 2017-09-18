@@ -52,6 +52,7 @@ public abstract class ICollector{
 
         eventData.offsetTime = eventItem.offsetTime;
         eventData.ct = eventItem.ct;
+
         return eventData;
     }
 
