@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 
 
@@ -20,6 +21,7 @@ import android.view.WindowManager;
  */
 public class DeviceUtil {
 
+    private static final String TAG =DeviceUtil.class.getName();
 
     /**
      * getAppVersionName
@@ -35,6 +37,7 @@ public class DeviceUtil {
                 return "";
             }
         } catch (Exception e) {
+            Log.e(TAG,null!=e?e.getMessage():"");
         }
         return versionName;
     }
@@ -50,6 +53,7 @@ public class DeviceUtil {
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
             versionCode = pi.versionCode;
         } catch (Exception e) {
+            Log.e(TAG,null!=e?e.getMessage():"");
         }
         return versionCode;
     }
@@ -145,7 +149,7 @@ public class DeviceUtil {
                 id = Settings.Secure.getString(context.getContentResolver(),
                         Settings.Secure.ANDROID_ID);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG,null!=e?e.getMessage():"");
             }
         }
         return id;
@@ -157,19 +161,23 @@ public class DeviceUtil {
      */
     public static String getSimOperatorName(Context context) {
         String providersName = null;
-        // 返回唯一的用户ID;就是这张卡的编号神马的
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);//取得相关系统服务
-        //国际移动用户识别码
-        String IMSI = tm.getSubscriberId();
-        if(!TextUtils.isEmpty(IMSI)) {
-            // IMSI号前面3位460是国家，紧接着后面2位00 02是中国移动，01是中国联通，03是中国电信。
-            if (IMSI.startsWith("46000") || IMSI.startsWith("46002")) {
-                providersName = "中国移动";
-            } else if (IMSI.startsWith("46001")) {
-                providersName = "中国联通";
-            } else if (IMSI.startsWith("46003")) {
-                providersName = "中国电信";
+        try {
+            // 返回唯一的用户ID;就是这张卡的编号神马的
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);//取得相关系统服务
+            //国际移动用户识别码
+            String IMSI = tm.getSubscriberId();
+            if (!TextUtils.isEmpty(IMSI)) {
+                // IMSI号前面3位460是国家，紧接着后面2位00 02是中国移动，01是中国联通，03是中国电信。
+                if (IMSI.startsWith("46000") || IMSI.startsWith("46002")) {
+                    providersName = "中国移动";
+                } else if (IMSI.startsWith("46001")) {
+                    providersName = "中国联通";
+                } else if (IMSI.startsWith("46003")) {
+                    providersName = "中国电信";
+                }
             }
+        }catch (Exception e){
+            Log.e(TAG,null!=e?e.getMessage():"");
         }
         return providersName;
     }
@@ -187,7 +195,7 @@ public class DeviceUtil {
             PackageManager pm = context.getPackageManager();
             result = PackageManager.PERMISSION_GRANTED == pm.checkPermission(permissionName, context.getPackageName());
         }catch (Exception e){
-            e.printStackTrace();
+            Log.e(TAG,null!=e?e.getMessage():"");
         }
         return result;
     }

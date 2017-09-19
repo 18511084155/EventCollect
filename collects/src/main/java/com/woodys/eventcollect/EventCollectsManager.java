@@ -2,6 +2,7 @@ package com.woodys.eventcollect;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.woodys.eventcollect.callback.Action;
 import com.woodys.eventcollect.callback.SendActionCallback;
@@ -22,6 +23,7 @@ import java.util.concurrent.Executors;
  * Created by woodys on 2016-04-06.
  */
 public final class EventCollectsManager {
+    private static final String TAG = EventCollectsManager.class.getName();
     public static boolean enable = true;
     private static final ExecutorService FIXED_THREAD_POOL;
     private static final EventCollectsManager instance;
@@ -122,7 +124,7 @@ public final class EventCollectsManager {
             try {
                 eventCollector.insertEvent(eventItem);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG,null!=e?e.getMessage():"");
             }
         }
     }
@@ -139,7 +141,7 @@ public final class EventCollectsManager {
                     try {
                         eventCollector.insertEvent(eventItem);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Log.e(TAG,null!=e?e.getMessage():"");
                     }
                 }
             });
@@ -170,7 +172,7 @@ public final class EventCollectsManager {
                                 try {
                                     eventCollector.deleteEvent(items.get(items.size() - 1).eId);
                                 } catch (Exception e) {
-                                    e.printStackTrace();
+                                    Log.e(TAG,null!=e?e.getMessage():"");
                                 }
                             }
                             if (null != action) action.call(isSuccess);
@@ -178,7 +180,7 @@ public final class EventCollectsManager {
                         }
                     });
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e(TAG,null!=e?e.getMessage():"");
                 }
                 }
             });
