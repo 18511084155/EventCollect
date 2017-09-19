@@ -230,7 +230,9 @@ public class DbHelper {
                 String[] selection = DbTable.getSelection(clazz);
                 cursor = resolver.query(uri, selection, where, whereArgs, order);
                 if (null != cursor) {
-                    item = getItemByCursor(clazz, cursor);
+                    if (cursor.moveToNext()) {
+                        item = getItemByCursor(clazz, cursor);
+                    }
                 }
             }catch(Exception e){
                 e.printStackTrace();
