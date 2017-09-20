@@ -29,5 +29,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-apply from: rootProject.file('gradle/android-artifacts.gradle')
-apply from: rootProject.file('gradle/gradle-jcenter-push.gradle')
+apply from: rootProject.file('gradle/bintrayUpload.gradle')
+
+//apply from: rootProject.file('gradle/android-artifacts.gradle')
+//apply from: rootProject.file('gradle/gradle-jcenter-push.gradle')

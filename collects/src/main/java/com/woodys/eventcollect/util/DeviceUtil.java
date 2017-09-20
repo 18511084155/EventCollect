@@ -24,7 +24,9 @@ public class DeviceUtil {
     private static final String TAG =DeviceUtil.class.getName();
 
     /**
-     * getAppVersionName
+     * 获取应用VersionName
+     * @param context
+     * @return
      */
     public static String getAppVersionName(Context context) {
         String versionName = "";
@@ -43,7 +45,9 @@ public class DeviceUtil {
     }
 
     /**
-     *  getAppVersionCode
+     * 获取应用VersionCode
+     * @param context
+     * @return
      */
     public static int getAppVersionCode(Context context) {
         int versionCode = 0;
@@ -60,10 +64,9 @@ public class DeviceUtil {
 
 
     /**
-     *getMacAddress
-     *
+     * 获取mac地址
      * @param context
-     * @return MAC
+     * @return
      */
     public static String getMacAddress(Context context) {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -72,19 +75,7 @@ public class DeviceUtil {
     }
 
     /**
-     * getScreenDisplay
-     * @param activity
-     * @return
-     */
-    public static DisplayMetrics getScreenDisplay(Activity activity)
-    {
-        DisplayMetrics dm = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        return dm;
-    }
-
-    /**
-     * getScreenWidth
+     * 获取屏幕宽
      * @param context
      * @return
      */
@@ -97,7 +88,7 @@ public class DeviceUtil {
     }
 
     /**
-     * getScreenHeight
+     * 获取屏幕高度
      * @param context
      * @return
      */
@@ -110,7 +101,7 @@ public class DeviceUtil {
     }
 
     /**
-     * etScreenDensity
+     * 获取屏幕密度
      * @param context
      * @return
      */
@@ -120,6 +111,7 @@ public class DeviceUtil {
 
     /**
      * 获取当前手机型号
+     * @return
      */
     public static String getPhoneModel() {
         return Build.MODEL;
@@ -127,19 +119,23 @@ public class DeviceUtil {
 
     /**
      * 获取手机系统类型
+     * @return
      */
     public static String getSystemModel() {
         return Build.BRAND;
     }
 
-    /**获取手机系统版本*/
+    /**
+     * 获取手机系统版本
+     * @return
+     */
     public static int getSystemVersion() {
         return Build.VERSION.SDK_INT;
     }
 
     /**
      * 获得android设备id
-     *
+     * @param context
      * @return
      */
     public static String getAndroidId(Context context) {
@@ -157,6 +153,7 @@ public class DeviceUtil {
 
     /**
      * 获取服务提供商名字
+     * @param context
      * @return
      */
     public static String getSimOperatorName(Context context) {
@@ -184,8 +181,8 @@ public class DeviceUtil {
 
     /**
      * 判断某个权限是否授权
+     * @param context
      * @param permissionName 权限名称，比如：android.permission.READ_PHONE_STATE
-     * *
      * @return
      */
 

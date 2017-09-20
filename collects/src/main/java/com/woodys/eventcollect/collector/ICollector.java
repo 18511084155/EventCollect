@@ -19,6 +19,8 @@ public abstract class ICollector{
 
     /**
      * 获取手机数据源
+     * @param context
+     * @return
      */
     protected DeviceData getDeviceData(Context context){
         DeviceData deviceData = new DeviceData();
@@ -31,6 +33,12 @@ public abstract class ICollector{
         return deviceData;
     }
 
+    /**
+     * 获取事件对象
+     * @param context
+     * @param eventItem
+     * @return
+     */
     protected EventData initEventData(Context context,EventItem eventItem) {
         EventData eventData = new EventData();
         eventData.phoneNo = eventItem.phoneNo;
@@ -58,6 +66,9 @@ public abstract class ICollector{
 
     /**
      * 添加单条数据
+     * @param item
+     * @return
+     * @throws Exception
      */
     public long insertEvent(EventItem item) throws Exception{
         if (!DeviceUtil.hasPermission(DbHelper.getContext(), "android.permission.WRITE_EXTERNAL_STORAGE")) {
@@ -66,13 +77,19 @@ public abstract class ICollector{
             return insertData(item);
         }
     }
+
     /**
      * 添加单条数据
+     * @param item
+     * @return
+     * @throws Exception
      */
     public abstract long insertData(EventItem item) throws Exception;
 
     /**
      * 批量添加数据
+     * @param items
+     * @throws Exception
      */
     public void insertBatchEvent(ArrayList<EventItem> items) throws Exception{
         if (!DeviceUtil.hasPermission(DbHelper.getContext(), "android.permission.WRITE_EXTERNAL_STORAGE")) {
@@ -82,13 +99,17 @@ public abstract class ICollector{
         }
     }
 
-    /**s
+    /**
      * 批量添加数据
+     * @param items
+     * @throws Exception
      */
     public abstract void insertBatchData(ArrayList<EventItem> items) throws Exception;
 
     /**
      * 删除数据
+     * @param lastId
+     * @throws Exception
      */
     public void deleteEvent(long lastId) throws Exception{
         if (!DeviceUtil.hasPermission(DbHelper.getContext(), "android.permission.WRITE_EXTERNAL_STORAGE")) {
@@ -100,6 +121,8 @@ public abstract class ICollector{
 
     /**
      * 删除数据
+     * @param lastId
+     * @throws Exception
      */
     public abstract void deleteData(long lastId) throws Exception;
 
@@ -108,6 +131,7 @@ public abstract class ICollector{
      * @param clazz
      * @param number
      * @return
+     * @throws Exception
      */
     public  ArrayList<?> queryItems(Class<?> clazz, int number) throws Exception{
         if (!DeviceUtil.hasPermission(DbHelper.getContext(), "android.permission.READ_EXTERNAL_STORAGE")) {
@@ -122,6 +146,7 @@ public abstract class ICollector{
      * @param clazz
      * @param number
      * @return
+     * @throws Exception
      */
     public abstract ArrayList<?> queryLists(Class<?> clazz, int number) throws Exception;
 }
